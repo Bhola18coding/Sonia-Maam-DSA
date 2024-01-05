@@ -136,3 +136,40 @@ int main()
 
     return 0;
 }*/
+
+
+
+
+//
+#include <bits/stdc++.h> 
+using namespace std;
+
+int maxi(vector<int>&nums, int idx , vector<int>&dp)
+{
+
+   //Base case
+    if(idx>=nums.size())
+    {
+        return 0;
+    }
+
+     if(dp[idx]!=-1)
+     {
+         return dp[idx];
+     }
+    //pick 
+    int pick = nums[idx]+maxi(nums, idx+2, dp);
+    //non pick 
+    int np = 0+maxi(nums, idx+1, dp);
+
+    int ans = max(pick, np);
+    dp[idx] = ans;
+    return dp[idx];
+    
+}
+int maximumNonAdjacentSum(vector<int> &nums){
+    // Write your code here.
+    vector<int>dp(nums.size(), -1);
+    int i =0;
+   return  maxi(nums, i, dp);
+}
